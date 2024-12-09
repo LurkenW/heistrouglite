@@ -4,10 +4,12 @@ var SPEED = 100
 
 func _physics_process(delta: float) -> void:
 	
-	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	## Movement
+	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction.normalized() * SPEED
+	move_and_slide()
 	
+	## Rotation
 	var cursorPosition = get_global_mouse_position()
 	look_at(cursorPosition)
 	
-	move_and_slide()

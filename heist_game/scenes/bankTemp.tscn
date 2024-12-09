@@ -3,11 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="1_7d5b0"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7vd8a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhfxs"]
-size = Vector2(18, 49)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfckv"]
+radius = 8.0
+height = 49.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nibo"]
-size = Vector2(32, 256)
+size = Vector2(16, 256)
 
 [node name="root" type="Node2D"]
 
@@ -21,8 +22,8 @@ texture = ExtResource("1_7d5b0")
 [node name="Camera2D" type="Camera2D" parent="player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2(-1, 0.5)
-shape = SubResource("RectangleShape2D_mhfxs")
+position = Vector2(-2, 0.5)
+shape = SubResource("CapsuleShape2D_hfckv")
 
 [node name="map" type="Node2D" parent="."]
 
@@ -40,29 +41,27 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="map/walls"]
-position = Vector2(-232, -184)
+position = Vector2(-248, -128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/walls/StaticBody2D"]
-position = Vector2(-8, 56)
 shape = SubResource("RectangleShape2D_2nibo")
 
 [node name="ColorRect" type="ColorRect" parent="map/walls/StaticBody2D"]
-offset_left = -24.0
-offset_top = -72.0
+offset_left = -8.0
+offset_top = -128.0
 offset_right = 8.0
-offset_bottom = 184.0
+offset_bottom = 128.0
+pivot_offset = Vector2(8, 128)
 color = Color(0, 0, 0, 1)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="map/walls"]
-position = Vector2(200, -368)
+position = Vector2(-56, -256)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/walls/StaticBody2D2"]
-position = Vector2(-248, 240)
+position = Vector2(16, 128)
 shape = SubResource("RectangleShape2D_2nibo")
 
 [node name="ColorRect" type="ColorRect" parent="map/walls/StaticBody2D2"]
-offset_left = -264.0
-offset_top = 112.0
-offset_right = -232.0
-offset_bottom = 368.0
+offset_right = 32.0
+offset_bottom = 256.0
 color = Color(0, 0, 0, 1)
