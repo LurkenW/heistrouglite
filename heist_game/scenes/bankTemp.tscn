@@ -1,29 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://blbrwqf0iwj61"]
+[gd_scene load_steps=3 format=3 uid="uid://blbrwqf0iwj61"]
 
-[ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="1_7d5b0"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_7vd8a"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfckv"]
-radius = 8.0
-height = 49.0
+[ext_resource type="PackedScene" uid="uid://b12l6a0an7xdp" path="res://scenes/player_char.tscn" id="1_pmx1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nibo"]
 size = Vector2(16, 256)
 
 [node name="root" type="Node2D"]
-
-[node name="player" type="CharacterBody2D" parent="."]
-z_index = 5
-script = ExtResource("1_7vd8a")
-
-[node name="Sprite2D" type="Sprite2D" parent="player"]
-texture = ExtResource("1_7d5b0")
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2(-2, 0.5)
-shape = SubResource("CapsuleShape2D_hfckv")
 
 [node name="map" type="Node2D" parent="."]
 
@@ -65,3 +47,6 @@ shape = SubResource("RectangleShape2D_2nibo")
 offset_right = 32.0
 offset_bottom = 256.0
 color = Color(0, 0, 0, 1)
+
+[node name="CharacterBody2D" parent="map" instance=ExtResource("1_pmx1x")]
+position = Vector2(42, -46)

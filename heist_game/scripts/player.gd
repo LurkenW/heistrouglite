@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var SPEED = 100
+var SPEED = 125
 
 func _physics_process(delta: float) -> void:
 	
@@ -12,4 +12,12 @@ func _physics_process(delta: float) -> void:
 	## Rotation
 	var cursorPosition = get_global_mouse_position()
 	look_at(cursorPosition)
+	
+	
+func  _input(event):
+	#Sprinting
+	if event.is_action_pressed("player_sprint_shift"):
+		SPEED = 300
+	if event.is_action_released("player_sprint_shift"):
+		SPEED = 125
 	
