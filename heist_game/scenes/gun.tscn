@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3mmbg82nr6fl"]
+
+[ext_resource type="Script" path="res://scripts/gun.gd" id="1_27dnv"]
+[ext_resource type="Texture2D" uid="uid://g875c3c3kkef" path="res://recources/icon.svg" id="1_rp3k6"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_27dnv")
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+position = Vector2(0, -2.38419e-07)
+scale = Vector2(0.5, 0.125)
+
+[node name="Icon" type="Sprite2D" parent="WeaponPivot"]
+position = Vector2(64, 1.90735e-06)
+scale = Vector2(0.625, 0.5)
+texture = ExtResource("1_rp3k6")
+
+[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/Icon"]
+position = Vector2(45, 0)
