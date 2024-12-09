@@ -14,17 +14,16 @@ func _input(event):
 			zoom = (zoom + Vector2(zoom_speed, zoom_speed)).clamp(minimum_zoom, maximum_zoom)
 
 	#Dynamic camera movement 
-	if event is InputEventMouseMotion:
-		position.y = get_local_mouse_position().y
-		position.x = clamp(get_local_mouse_position().x,-200, 200)
+	#if event is InputEventMouseMotion:
+	#	position.y = get_local_mouse_position().y
+	#	position.x = clamp(get_local_mouse_position().x,-200, 200)
 #Screenshake
 
-func shot():
+#func shot():
 	
-	set_rotation_smoothing_speed(100)
-	set_position_smoothing_speed(100)
-	position.y += randf_range(-15,15)
-	position.x += randf_range(-15,15)
-	set_position_smoothing_speed(3)
-	set_rotation_smoothing_speed(3)
+	##set_position_smoothing_speed(100)
+	#position.y += randf_range(-15,15)
+	#position.x += randf_range(-15,15)
+	#set_position_smoothing_speed(3)
+	#set_rotation_smoothing_speed(3)
 	
