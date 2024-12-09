@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://blbrwqf0iwj61"]
+[gd_scene load_steps=5 format=3 uid="uid://blbrwqf0iwj61"]
 
 [ext_resource type="PackedScene" uid="uid://b12l6a0an7xdp" path="res://scenes/player_char.tscn" id="1_pmx1x"]
+[ext_resource type="PackedScene" uid="uid://dr7ds5ea5aqr" path="res://scenes/enemy.tscn" id="2_34ac4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nibo"]
 size = Vector2(16, 256)
@@ -51,5 +52,9 @@ color = Color(0, 0, 0, 1)
 position = Vector2(16, 128)
 shape = SubResource("RectangleShape2D_mku13")
 
-[node name="CharacterBody2D" parent="map" instance=ExtResource("1_pmx1x")]
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_pmx1x")]
 position = Vector2(42, -46)
+
+[node name="enemyGuard1" parent="." instance=ExtResource("2_34ac4")]
+position = Vector2(440, 96)
+rotation = -2.68974
