@@ -19,8 +19,8 @@ func _input(event):
 	#	position.x = clamp(get_local_mouse_position().x,-200, 200)
 #Screenshake
 
-#func shot():
-	
+func shot():
+	pass
 	##set_position_smoothing_speed(100)
 	#position.y += randf_range(-15,15)
 	#position.x += randf_range(-15,15)

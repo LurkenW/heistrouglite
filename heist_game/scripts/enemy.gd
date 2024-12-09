@@ -15,3 +15,6 @@ func _move_to_target(target):
 	velocity = direction * SPEED
 	look_at(target.global_position)
 	move_and_slide()
+
+func takeDamage():
+	pass

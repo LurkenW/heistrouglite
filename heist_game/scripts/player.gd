@@ -24,3 +24,7 @@ func  _input(event):
 	if event.is_action_pressed("shoot_left_mouse"):
 		$Gun.shoot()
 		$Camera2D.shot()
+
+
+func takeDamage():
+	pass
