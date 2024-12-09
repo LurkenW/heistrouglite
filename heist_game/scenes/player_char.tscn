@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g0fyj"]
 [ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="2_3alnj"]
-[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="3_5iwb1"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_5iwb1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8huca"]
 radius = 7.0
@@ -19,4 +19,8 @@ position = Vector2(-2, 0.5)
 shape = SubResource("CapsuleShape2D_8huca")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 10.0
 script = ExtResource("3_5iwb1")
