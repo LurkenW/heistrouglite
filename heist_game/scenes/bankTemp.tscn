@@ -58,3 +58,4 @@ position = Vector2(42, -46)
 [node name="enemyGuard1" parent="." instance=ExtResource("2_34ac4")]
 position = Vector2(440, 96)
 rotation = -2.68974
+script = null
