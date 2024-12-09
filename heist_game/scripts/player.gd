@@ -21,3 +21,5 @@ func  _input(event):
 	if event.is_action_released("player_sprint_shift"):
 		SPEED = 125
 	
+	if event.is_action_pressed("shoot_left_mouse"):
+		$Gun.shoot()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b12l6a0an7xdp"]
+[gd_scene load_steps=6 format=3 uid="uid://b12l6a0an7xdp"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g0fyj"]
 [ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="2_3alnj"]
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="3_5iwb1"]
+[ext_resource type="PackedScene" uid="uid://d3mmbg82nr6fl" path="res://scenes/gun.tscn" id="4_xls0d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8huca"]
 radius = 7.0
@@ -20,3 +21,5 @@ shape = SubResource("CapsuleShape2D_8huca")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_5iwb1")
+
+[node name="Gun" parent="." instance=ExtResource("4_xls0d")]
