@@ -17,13 +17,14 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		position.y = get_local_mouse_position().y
 		position.x = clamp(get_local_mouse_position().x,-200, 200)
+#Screenshake
 
 func shot():
 	
 	set_rotation_smoothing_speed(100)
 	set_position_smoothing_speed(100)
-	position.y += randf_range(-3,3)
-	position.x += randf_range(-10,10)
+	position.y += randf_range(-15,15)
+	position.x += randf_range(-15,15)
 	set_position_smoothing_speed(3)
 	set_rotation_smoothing_speed(3)
 	
