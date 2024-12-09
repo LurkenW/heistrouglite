@@ -9,5 +9,5 @@ func shoot() -> void:
 	new_bullet.global_position = $WeaponPivot/Icon/ShootingPoint.global_position
 	new_bullet.global_rotation = $WeaponPivot/Icon/ShootingPoint.global_rotation
 	
-	$WeaponPivot/Icon/ShootingPoint.add_child(new_bullet)
+	get_node("/root").add_child(new_bullet)
 	 
