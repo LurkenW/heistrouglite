@@ -2,7 +2,7 @@ extends Area2D
 
 var travelledDisance: float = 0
 const SPEED: float = 2000
-const RANGE: float = 15000
+const RANGE: float = 10000
 var damage
 
 @onready var direction: Vector2 = Vector2.RIGHT.rotated(rotation)
@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 	
 	position += direction * SPEED * delta
 	
-	travelledDisance = SPEED * delta
+	travelledDisance += SPEED * delta
 	if travelledDisance > RANGE:
 		queue_free()
 	

@@ -22,8 +22,10 @@ func  _input(event):
 		SPEED = 125
 	
 	if event.is_action_pressed("shoot_left_mouse"):
-		$Gun.shoot()
-		$Camera2D.shot()
+		$Gun.startShooting()
+		
+	if event.is_action_released("shoot_left_mouse"):
+		$Gun.stopShooting()
 
 func takeDamage():
 	pass
