@@ -25,6 +25,5 @@ func  _input(event):
 		$Gun.shoot()
 		$Camera2D.shot()
 
-
 func takeDamage():
 	pass

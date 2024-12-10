@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var target = get_node("/root/root/CharacterBody2D")
 
 const SPEED = 50.0
+var health = 100
 
 func _physics_process(delta: float) -> void:
 #	if target != null:
@@ -16,5 +17,10 @@ func _move_to_target(target):
 	look_at(target.global_position)
 	move_and_slide()
 
-func takeDamage():
-	pass
+func takeDamage(incoming_damage):
+	health -= incoming_damage
+	if (health < 0):
+		killed()
+
+func killed():
+	self.queue_free()
