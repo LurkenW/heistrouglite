@@ -1,6 +1,15 @@
 extends CharacterBody2D
 
-var SPEED = 125
+var SPEED: int = 125
+
+var gun: Gun
+
+func _ready() -> void:
+	
+	# Find players Gun
+	for child in get_children():
+		if child is Gun:
+			gun = child
 
 func _physics_process(delta: float) -> void:
 	
@@ -22,10 +31,10 @@ func  _input(event):
 		SPEED = 125
 	
 	if event.is_action_pressed("shoot_left_mouse"):
-		$Gun.startShooting()
+		gun.startShooting()
 		
 	if event.is_action_released("shoot_left_mouse"):
-		$Gun.stopShooting()
+		gun.stopShooting()
 
 func takeDamage():
 	pass
