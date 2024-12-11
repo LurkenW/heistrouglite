@@ -22,7 +22,6 @@ func startShooting() -> void:
 	if not isReloading:
 		_shoot()
 
-
 func stopShooting() -> void:
 	isShooting = false
 	print("HEJ")
