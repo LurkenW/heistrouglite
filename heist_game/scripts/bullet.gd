@@ -26,10 +26,15 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# Remove the bullet from the scene.
 	queue_free()
+<<<<<<< Updated upstream
 	
 	# If the collided object has a takeDamage method, apply damage to it.
 	if body.has_method("takeDamage"):
 		body.takeDamage(damage)
+=======
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
+>>>>>>> Stashed changes
 
 # Sets the damage value for the bullet.
 func set_damage(dmg):
