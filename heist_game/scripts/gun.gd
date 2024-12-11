@@ -12,12 +12,19 @@ class_name Gun extends Node2D
 @export var shootingPoints: Array[Marker2D] = []
 
 ## The cooldown time (in seconds) between consecutive shots.
-@export var fireCooldown: int = 1
+@export var fireCooldown: float = 1
+
+@export_group("Burst")
+@export var burstFire: bool = false
+@export var burstShots: int = 3
+@export var burstCooldown: float = 0.05
 
 var _reloadTimer: Timer # Internal Timer instance used for handling the reload cooldown.
 var _isShooting: bool = false # Tracks whether the gun is currently in a shooting state.
 var _isReloading: bool = false # Tracks whether the gun is currently reloading.
 
+var _burstTimer: Timer
+var _burstShots: int = 0
 
 func _ready() -> void:
 	_checkRequired() # Ensures all required variables are properly set.
@@ -26,22 +33,27 @@ func _ready() -> void:
 	_reloadTimer = Timer.new()
 	add_child(_reloadTimer)
 	_reloadTimer.wait_time = fireCooldown
-	_reloadTimer.timeout.connect(_on_timer_timeout)
+	_reloadTimer.timeout.connect(_on_reloadTimer_timeout)
+	_reloadTimer.one_shot = true
 	_reloadTimer.name = "ReloadTimer"
+
+
+	_burstTimer = Timer.new()
+	add_child(_burstTimer)
+	_burstTimer.wait_time = burstCooldown
+	_burstTimer.timeout.connect(_on_burstTimer_timeout)
+	_burstTimer.one_shot = true
+	_burstTimer.name = "BurstTimer"
 
 # Ensures that critical variables are assigned. Pushes an error if a required variable is missing.
 func _checkRequired():
-	if shootingPoints == null:
+	if shootingPoints.size() > 1:
 		push_error("The variable 'Shooting Point' must be set in the Inspector!")
 
 # Handles the shooting logic by instantiating and firing a bullet.
-func _shoot() -> void:
-	_reloadTimer.start() # Starts the reload timer.
-	_isReloading = true # Marks the gun as reloading.
-
+func _shootOnce() -> void:
 	# Load and instantiate the bullet scene.
 	const BULLET = preload("res://scenes/bullet.tscn")
-	
 	# For every shootingPoint, shoot a bullet
 	for shootingPoint in shootingPoints:
 		
@@ -54,20 +66,49 @@ func _shoot() -> void:
 
 		# Add the bullet to the scene tree for it to function.
 		get_node("/root").add_child(new_bullet)
+	
+func _shootBurst():
+	_reloadTimer.start() # Starts the burst timer.
+	_burstTimer.start()
+	_isReloading = true # Marks the gun as reloading.
+	
+	_shootOnce()
+
 
 # Callback for the reload timer's timeout signal. Resumes shooting if required or ends reloading.
-func _on_timer_timeout():
+func _on_reloadTimer_timeout():
+	
 	if _isShooting:
-		_shoot() # Continue shooting if the gun is in the shooting state.
+		_reloadTimer.start() # Starts the reload timer.
+		if burstFire:
+			_shootBurst()
+		else:
+			_shootOnce() # Continue shooting if the gun is in the shooting state.
 	else:
 		_isReloading = false # Otherwise, end the reloading state.
+
+func _on_burstTimer_timeout():
+	_burstShots += 1
+	
+	if _burstShots < burstShots:
+		_shootOnce()
+		_isReloading = true # Marks the gun as reloading.
+		_burstTimer.start()
+		
+	else:
+		_burstShots = 0
 
 ## Starts the shooting process. Shoots immediately if the gun is not reloading.
 func startShooting() -> void:
 	_isShooting = true # Mark the gun as shooting.
-
+	
 	if not _isReloading:
-		_shoot() # Fire a bullet if not in the middle of a reload.
+		_reloadTimer.start() # Starts the reload timer.
+		_isReloading = true
+		if burstFire:
+			_shootBurst()
+		else:
+			_shootOnce() # Fire a bullet if not in the middle of a reload.
 
 ## Stops the shooting process.
 func stopShooting() -> void:
