@@ -8,8 +8,8 @@ class_name Gun extends Node2D
 ## The amount of damage each bullet deals.
 @export var damage: int = 10 
 
-## The point from which bullets are fired.
-@export var shootingPoint: Marker2D = null 
+## An array of all the points from which bullets are fired. Rotation is preserved.
+@export var shootingPoints: Array[Marker2D] = []
 
 ## The cooldown time (in seconds) between consecutive shots.
 @export var fireCooldown: int = 1
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 # Ensures that critical variables are assigned. Pushes an error if a required variable is missing.
 func _checkRequired():
-	if shootingPoint == null:
+	if shootingPoints == null:
 		push_error("The variable 'Shooting Point' must be set in the Inspector!")
 
 # Handles the shooting logic by instantiating and firing a bullet.
@@ -41,15 +41,19 @@ func _shoot() -> void:
 
 	# Load and instantiate the bullet scene.
 	const BULLET = preload("res://scenes/bullet.tscn")
-	var new_bullet = BULLET.instantiate()
-	new_bullet.set_damage(damage) # Set the damage for the bullet.
+	
+	# For every shootingPoint, shoot a bullet
+	for shootingPoint in shootingPoints:
+		
+		var new_bullet = BULLET.instantiate()
+		new_bullet.set_damage(damage) # Set the damage for the bullet.
 
-	# Position the bullet at the shooting point.
-	new_bullet.global_position = shootingPoint.global_position
-	new_bullet.global_rotation = shootingPoint.global_rotation
+		# Position the bullet at the shooting point.
+		new_bullet.global_position = shootingPoint.global_position
+		new_bullet.global_rotation = shootingPoint.global_rotation
 
-	# Add the bullet to the scene tree for it to function.
-	get_node("/root").add_child(new_bullet)
+		# Add the bullet to the scene tree for it to function.
+		get_node("/root").add_child(new_bullet)
 
 # Callback for the reload timer's timeout signal. Resumes shooting if required or ends reloading.
 func _on_timer_timeout():

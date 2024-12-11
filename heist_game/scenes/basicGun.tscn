@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/gun.gd" id="1_chsa3"]
 [ext_resource type="Texture2D" uid="uid://g875c3c3kkef" path="res://recources/icon.svg" id="2_w14k4"]
 
-[node name="BasicGun" type="Node2D" node_paths=PackedStringArray("shootingPoint")]
+[node name="BasicGun" type="Node2D" node_paths=PackedStringArray("shootingPoints")]
 script = ExtResource("1_chsa3")
-shootingPoint = NodePath("WeaponPivot/Icon/ShootingPoint")
+shootingPoints = [NodePath("WeaponPivot/Icon/ShootingPoint")]
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 position = Vector2(0, -2.38419e-07)
