@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g0fyj"]
 [ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="2_3alnj"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_5iwb1"]
-[ext_resource type="PackedScene" uid="uid://1bh27sig4dgu" path="res://scenes/basicGun.tscn" id="4_f71eo"]
+[ext_resource type="PackedScene" uid="uid://1bh27sig4dgu" path="res://scenes/pistol.tscn" id="4_4bamr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8huca"]
 radius = 7.0
@@ -26,4 +26,4 @@ rotation_smoothing_enabled = true
 rotation_smoothing_speed = 3.0
 script = ExtResource("3_5iwb1")
 
-[node name="BasicGun" parent="." instance=ExtResource("4_f71eo")]
+[node name="Gun" parent="." instance=ExtResource("4_4bamr")]

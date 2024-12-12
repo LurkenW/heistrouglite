@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmy0ssf4uqu5d"]
+[gd_scene load_steps=6 format=3 uid="uid://cg4y0o30y5xv6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_47o7x"]
 [ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="2_whm5u"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_p41r1"]
-[ext_resource type="PackedScene" uid="uid://cifidtfl70mhw" path="res://scenes/HenriksGunWIP.tscn" id="4_g0e56"]
+[ext_resource type="PackedScene" path="res://scenes/HenriksGunWIP.tscn" id="4_g0e56"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ohjv"]
 radius = 7.0
