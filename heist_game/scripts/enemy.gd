@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if alerted == true:
 		look_at(target_player.global_position)
 	if player_in_range == true:
-		sight_check()
+		_sight_check()
 	move_and_slide()
 
 func _on_movement_timer_timeout():
@@ -75,9 +75,9 @@ func strafe_target(target):
 func take_damage(dmg):
 	health -= dmg
 	if (health < 0):
-		killed()
+		_killed()
 
-func killed():
+func _killed():
 	queue_free()
 
 func _on_sight_body_entered(body):
@@ -88,15 +88,15 @@ func _on_sight_body_exited(body):
 	if body == target_player:
 		player_in_range = false
 
-func sight_check():
+func _sight_check():
 	#Sets up a raycast that checks if the enemy has direct LOS to the player
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(global_position, target_player.global_position)
-	var sight_check = space_state.intersect_ray(query)
+	var _sight_check = space_state.intersect_ray(query)
 	
 	#If the cast succeeds, activate the alertness timer
-	if sight_check:
-		if sight_check.collider.name == target_player.name:
+	if _sight_check:
+		if _sight_check.collider.name == target_player.name:
 			if (player_in_sight == false):
 				alert_timer.start()
 			player_in_sight = true
