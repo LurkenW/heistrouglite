@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr7ds5ea5aqr"]
+[gd_scene load_steps=6 format=3 uid="uid://dr7ds5ea5aqr"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ti6u5"]
 [ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="2_h2m7y"]
@@ -8,6 +8,8 @@ radius = 7.0
 height = 39.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sgenf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3i5kr"]
 
 [node name="guardEnemy" type="CharacterBody2D"]
 script = ExtResource("1_ti6u5")
@@ -28,5 +30,12 @@ shape = SubResource("CapsuleShape2D_jqj4v")
 scale = Vector2(50, 50)
 shape = SubResource("CircleShape2D_sgenf")
 
+[node name="Auto-Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Auto-Detect"]
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_3i5kr")
+
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
+[connection signal="body_entered" from="Auto-Detect" to="." method="_on_auto_detect_body_entered"]

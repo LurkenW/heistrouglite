@@ -56,5 +56,5 @@ shape = SubResource("RectangleShape2D_mku13")
 position = Vector2(42, -46)
 
 [node name="guardEnemy" parent="." instance=ExtResource("2_34ac4")]
-position = Vector2(626, 194)
-rotation = -3.02473
+position = Vector2(333, -2)
+rotation = 0.0409062
