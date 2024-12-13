@@ -136,10 +136,8 @@ func _isShootingThroughWall() -> bool:
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
-		# Check if it collided with a wall
-		if collider.is_in_group("walls"):
-			raycast.queue_free()
-			return true
+		raycast.queue_free()
+		return true
 	
 	raycast.queue_free()
 	return false

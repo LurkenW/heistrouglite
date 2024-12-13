@@ -26,7 +26,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="map/walls" groups=["walls"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="map/walls"]
 position = Vector2(304, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/walls/StaticBody2D"]
@@ -40,7 +40,7 @@ offset_bottom = 128.0
 pivot_offset = Vector2(8, 128)
 color = Color(0, 0, 0, 1)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="map/walls" groups=["walls"]]
+[node name="StaticBody2D2" type="StaticBody2D" parent="map/walls"]
 position = Vector2(-56, -256)
 
 [node name="ColorRect" type="ColorRect" parent="map/walls/StaticBody2D2"]
