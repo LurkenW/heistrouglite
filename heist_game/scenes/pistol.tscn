@@ -5,16 +5,16 @@
 
 [node name="Pistol" type="Node2D" node_paths=PackedStringArray("shootingPoints")]
 script = ExtResource("1_y3ibp")
-shootingPoints = [NodePath("WeaponPivot/Icon/ShootingPoint")]
+shootingPoints = [NodePath("WeaponPivot/ShootingPoint")]
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 position = Vector2(0, -2.38419e-07)
-scale = Vector2(0.5, 0.125)
 
 [node name="Icon" type="Sprite2D" parent="WeaponPivot"]
-position = Vector2(64, 1.90735e-06)
-scale = Vector2(0.625, 0.5)
+position = Vector2(20.5, 3.57628e-07)
+scale = Vector2(0.210938, 0.03125)
 texture = ExtResource("2_bd1d3")
 
-[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/Icon"]
-position = Vector2(25.6, 0)
+[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot"]
+position = Vector2(34, 2.38419e-07)
+scale = Vector2(0.625, 0.15625)
