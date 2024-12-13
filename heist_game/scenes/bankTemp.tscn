@@ -15,8 +15,8 @@ size = Vector2(32, 256)
 
 [node name="background" type="ColorRect" parent="map"]
 z_index = -5
-offset_left = -256.0
-offset_top = -256.0
+offset_left = -771.0
+offset_top = -766.0
 offset_right = 1043.0
 offset_bottom = 557.0
 
@@ -27,7 +27,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="map/walls"]
-position = Vector2(304, 1)
+position = Vector2(228, 158)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/walls/StaticBody2D"]
 shape = SubResource("RectangleShape2D_2nibo")
@@ -39,6 +39,7 @@ offset_right = 8.0
 offset_bottom = 128.0
 pivot_offset = Vector2(8, 128)
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="map/walls"]
 position = Vector2(-56, -256)
@@ -52,8 +53,40 @@ color = Color(0, 0, 0, 1)
 position = Vector2(16, 128)
 shape = SubResource("RectangleShape2D_mku13")
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="map/walls"]
+position = Vector2(655, -284)
+rotation = -0.833009
+scale = Vector2(1, 2.43144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map/walls/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_2nibo")
+
+[node name="ColorRect" type="ColorRect" parent="map/walls/StaticBody2D3"]
+offset_left = -8.0
+offset_top = -128.0
+offset_right = 8.0
+offset_bottom = 128.0
+pivot_offset = Vector2(8, 128)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="map/walls"]
+position = Vector2(878, -195)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map/walls/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_2nibo")
+
+[node name="ColorRect" type="ColorRect" parent="map/walls/StaticBody2D4"]
+offset_left = -8.0
+offset_top = -128.0
+offset_right = 8.0
+offset_bottom = 128.0
+pivot_offset = Vector2(8, 128)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_pmx1x")]
-position = Vector2(42, -46)
+position = Vector2(-263, -36)
 
 [node name="guardEnemy" parent="." instance=ExtResource("2_34ac4")]
 position = Vector2(333, -2)

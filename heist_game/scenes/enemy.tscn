@@ -36,6 +36,8 @@ shape = SubResource("CircleShape2D_sgenf")
 scale = Vector2(15, 15)
 shape = SubResource("CircleShape2D_3i5kr")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
 [connection signal="body_entered" from="Auto-Detect" to="." method="_on_auto_detect_body_entered"]

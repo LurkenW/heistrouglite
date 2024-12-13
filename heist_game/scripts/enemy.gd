@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 @onready var target_player = get_node("/root/root/CharacterBody2D")
 
-var SPEED = 100.0
+var speed = 100.0
 var health = 100
 var movement_delay = 1.0
 var movement_timer: Timer
 var alert_timer: Timer
+
+var target_position
 
 var alerted: bool
 
@@ -27,50 +29,56 @@ func _ready():
 	alert_timer.one_shot = true
 	alert_timer.name = "AlertTimer"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if (self.global_position.distance_to(target_player.global_position) < 100):
-		SPEED = 50
+		speed = 50
 	else:
-		SPEED = 100
-	if alerted == true:
-		look_at(target_player.global_position)
+		speed = 100
 	if player_in_range == true:
 		_sight_check()
 	move_and_slide()
+	if target_position:
+		look_at(target_position)
+		if (self.global_position.distance_to(target_position) < 20 && player_in_sight == false):
+			velocity = Vector2(0,0)
+			movement_timer.stop()
 
 func _on_movement_timer_timeout():
 	movement_timer.wait_time = movement_delay
-	make_movement_decision(target_player)
+	make_movement_decision()
 
-func make_movement_decision(target):
-	if (self.global_position.distance_to(target_player.global_position) < 110):
-		movement_delay = 0.2
-		_move_to_target(target)
+func make_movement_decision():
+	if (self.global_position.distance_to(target_position) < 110):
+		movement_delay = 0.1
+		_move_to_target()
 	else:
-		var rng = randi_range(0,3)
-		match rng:
-			0:
-				movement_delay = 0.5
-				strafe_target(target)
-			_:
-				movement_delay = 0.8
-				_move_to_target(target)
+		if (player_in_sight == false):
+			_move_to_target()
+		else:
+			var rng = randi_range(0,3)
+			match rng:
+				0:
+					movement_delay = 0.5
+					strafe_target()
+				_:
+					movement_delay = 0.8
+					_move_to_target()
 
 	#Moves directly towards target
-func _move_to_target(target):
-	var direction = global_position.direction_to(target.global_position)
-	velocity = direction * SPEED
+func _move_to_target():
+	var direction = global_position.direction_to(target_position)
+	velocity = direction * speed
 	
 	#Picks a random direction to strafe
-func strafe_target(target):
-	var direction = global_position.direction_to(target.global_position)
+func strafe_target():
+	var direction = global_position.direction_to(target_position)
 	var rng = randi_range(0,1)
 	match rng:
 		0:
 			direction = direction.rotated(PI/4)
 		1:
 			direction = direction.rotated(-PI/4)
-	velocity = direction * SPEED
+	velocity = direction * speed
 
 func take_damage(dmg):
 	health -= dmg
@@ -92,14 +100,15 @@ func _sight_check():
 	#Sets up a raycast that checks if the enemy has direct LOS to the player
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(global_position, target_player.global_position)
-	var _sight_check = space_state.intersect_ray(query)
+	var sight_check_result = space_state.intersect_ray(query)
 	
 	#If the cast succeeds, activate the alertness timer
-	if _sight_check:
-		if _sight_check.collider.name == target_player.name:
+	if sight_check_result:
+		if sight_check_result.collider.name == target_player.name:
 			if (player_in_sight == false):
 				alert_timer.start()
 			player_in_sight = true
+			target_position = target_player.global_position
 		else:
 			player_in_sight = false
 			_on_alert_timer_timeout() #Spit and scotch-tape ass way of doing it
@@ -107,9 +116,6 @@ func _sight_check():
 func alert_status() -> void:
 	if alerted == true:
 		movement_timer.start()
-	else:
-		velocity = Vector2(0,0)
-		movement_timer.stop()
 
 func _on_alert_timer_timeout():
 	if player_in_sight == true:
