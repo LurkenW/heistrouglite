@@ -27,9 +27,9 @@ rotation_smoothing_speed = 3.0
 script = ExtResource("3_p41r1")
 
 [node name="Shotgun" parent="." instance=ExtResource("4_g0e56")]
-fireCooldown = 2.0
+reloadCooldown = 5.0
+magazineSize = 9
 burstFire = true
-burstShots = 4
 burstCooldown = 0.15
 
 [node name="Timer" type="Timer" parent="."]
