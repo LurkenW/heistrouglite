@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://beys1smsdxtry"]
+
+[ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="1_4xf7r"]
+[ext_resource type="Script" path="res://scripts/testing_navigaton.gd" id="1_a5tdm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4542g"]
+radius = 8.0
+height = 54.0
+
+[node name="TestingNavigaton" type="CharacterBody2D"]
+script = ExtResource("1_a5tdm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.392084, 1, 0.870181, 1)
+texture = ExtResource("1_4xf7r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4542g")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

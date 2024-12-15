@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="2_h2m7y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqj4v"]
-radius = 7.0
-height = 39.0
+radius = 9.0
+height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sgenf"]
 
@@ -37,6 +37,7 @@ scale = Vector2(15, 15)
 shape = SubResource("CircleShape2D_3i5kr")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 200.0
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
