@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var SPEED: int = 125
+var health: float = 100.0
 
 var gun: Gun
 
@@ -36,5 +37,11 @@ func  _input(event):
 	if event.is_action_released("shoot_left_mouse"):
 		gun.stopShooting()
 
-func takeDamage():
+func take_damage(dmg):
+	health -= dmg
+	print(health)
+	if health <= 0:
+		killed()
+
+func killed():
 	pass
