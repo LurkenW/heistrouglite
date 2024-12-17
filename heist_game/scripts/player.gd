@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var SPEED: int = 125
 var health: float = 100.0
-
+var direction
 var gun: Gun
 
 func _ready() -> void:
@@ -15,13 +15,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	## Movement
-	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction.normalized() * SPEED
 	move_and_slide()
-	
 	## Rotation
 	var cursorPosition = get_global_mouse_position()
 	look_at(cursorPosition)
+
+
+func _process(delta):
+	#Limiting the posible positions to ints
+	position = position.round()
 	
 	
 func  _input(event):

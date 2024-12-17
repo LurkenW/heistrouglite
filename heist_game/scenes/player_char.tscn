@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b12l6a0an7xdp"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g0fyj"]
-[ext_resource type="Texture2D" uid="uid://cnfvelbvnj5xw" path="res://recources/tempChar.png" id="2_3alnj"]
+[ext_resource type="Texture2D" uid="uid://bow42j8tgj1jv" path="res://recources/Sprite-0001.png" id="2_bbvio"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_5iwb1"]
 [ext_resource type="PackedScene" uid="uid://1bh27sig4dgu" path="res://scenes/pistol.tscn" id="4_4bamr"]
 
@@ -13,17 +13,18 @@ height = 39.0
 script = ExtResource("1_g0fyj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_3alnj")
+texture = ExtResource("2_bbvio")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0.5)
 shape = SubResource("CapsuleShape2D_8huca")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0
+position_smoothing_speed = 100.0
 rotation_smoothing_enabled = true
-rotation_smoothing_speed = 3.0
+rotation_smoothing_speed = 100.0
 script = ExtResource("3_5iwb1")
 
 [node name="Gun" parent="." instance=ExtResource("4_4bamr")]
