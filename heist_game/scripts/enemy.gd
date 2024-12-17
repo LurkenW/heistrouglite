@@ -91,17 +91,15 @@ func _sight_check():
 	#If the cast succeeds, activate the alertness timer
 	if sight_check_result:
 		if sight_check_result.collider.name == target_player.name:
-			if (player_in_sight == false):
+			if (alerted == false && alert_timer.time_left == 0):
 				alert_timer.start()
 			player_in_sight = true
 			if distance_to_player < 80:
 				attack_player()
 		else:
 			player_in_sight = false
-			_on_alert_timer_timeout() #Spit and scotch-tape ass way of doing it
 
 func _on_alert_timer_timeout():
-	print("alert timer")
 	if player_in_sight == true:
 		alerted = true
 
@@ -109,3 +107,4 @@ func attack_player():
 	if (attack_timer.time_left == 0):
 		target_player.take_damage(8)
 		attack_timer.start()
+		print(target_player.health)
