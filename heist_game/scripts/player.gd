@@ -21,11 +21,10 @@ func _physics_process(delta: float) -> void:
 	## Rotation
 	var cursorPosition = get_global_mouse_position()
 	look_at(cursorPosition)
-
-
-func _process(delta):
-	#Limiting the posible positions to ints
+	
+	## Forces the character to move on integers 
 	position = position.round()
+
 	
 	
 func  _input(event):
