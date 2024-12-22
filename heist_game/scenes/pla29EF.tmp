@@ -5,24 +5,25 @@
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_5iwb1"]
 [ext_resource type="PackedScene" uid="uid://1bh27sig4dgu" path="res://scenes/pistol.tscn" id="4_4bamr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aift5"]
-radius = 3.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8huca"]
+radius = 7.0
+height = 39.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-motion_mode = 1
 script = ExtResource("1_g0fyj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_vu1dj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 0)
-shape = SubResource("CapsuleShape2D_aift5")
-one_way_collision_margin = 0.0
+position = Vector2(-2, 0.5)
+shape = SubResource("CapsuleShape2D_8huca")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
+position_smoothing_enabled = true
 position_smoothing_speed = 100.0
+rotation_smoothing_enabled = true
 rotation_smoothing_speed = 100.0
 script = ExtResource("3_5iwb1")
 
